@@ -1,0 +1,19 @@
+{
+  "name": "backend_3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./app.js --mode prod -p 8000",
+    "dev": "node --watch ./app.js --mode dev -p 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^13.0.0",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3"
+  }
+}
