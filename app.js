@@ -2,13 +2,13 @@ import express, { response } from "express";
 import dbConnect from "./src/utils/dbConnect.util.js";
 import argsUtils from "./src/utils/args.utils.js";
 import router from "./src/routers/index.router.js";
+import env from "./src/utils/env.util.js";
 
 const server = express();
-const port = argsUtils.port || 8080;
+const port = env.PORT || 8080;
 const ready = async () => {
   const mode = argsUtils.mode;
-  console.log("Server corriendo en  modo " + mode);
-  console.log("Server corriendo en puerto " + port);
+  console.log(`Server corriendo en puerto ${port} en modo ${mode} (app.js)`);
   await dbConnect();
 };
 

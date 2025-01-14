@@ -1,10 +1,9 @@
 import { connect } from "mongoose";
+import env from "./env.util.js";
 
 async function dbConnect() {
   try {
-    await connect(
-      "mongodb+srv://jcastagnani:backend123@backend-coderhouse.5lryv.mongodb.net/backend3"
-    );
+    await connect(env.MONGO_LINK);
     console.log(`Base de datos conectada.(dbConnect.util.js)`);
   } catch (error) {
     console.log(error);
