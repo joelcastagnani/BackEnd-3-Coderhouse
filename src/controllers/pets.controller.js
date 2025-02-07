@@ -1,14 +1,14 @@
-import Product from "../dao/models/product.model.js";
+import Pet from "../dao/models/pet.model.js";
 import {
   create,
   createMock,
   createMocks,
   read,
-} from "../services/products.service.js";
+} from "../services/pets.service.js";
 import CustomError from "../utils/errors/custom.error.js";
 import { notFound } from "../utils/errors/dictionary.error.js";
 
-const createProduct = async (req, res, next) => {
+const createPet = async (req, res, next) => {
   try {
     const data = req.body;
     const one = await create(data);
@@ -17,12 +17,12 @@ const createProduct = async (req, res, next) => {
     next(error);
   }
 };
-const readOneProduct = async (req, res, next) => {
+const readOnePet = async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const one = await Product.findById(pid);
+    const one = await Pet.findById(pid);
     if (one) {
-      return res.status(200).json({ mssage: "Read!", response: one });
+      return res.status(200).json({ message: "Read!", response: one });
     } else {
       CustomError.new(notFound);
     }
@@ -30,7 +30,7 @@ const readOneProduct = async (req, res, next) => {
     next(error);
   }
 };
-const readProducts = async (req, res, next) => {
+const readPets = async (req, res, next) => {
   try {
     const { page } = req.query;
     const all = await read(page);
@@ -43,7 +43,7 @@ const readProducts = async (req, res, next) => {
     next(error);
   }
 };
-const createMockProduct = async (req, res, next) => {
+const createMockPet = async (req, res, next) => {
   try {
     const one = await createMock();
     return res.status(201).json({ message: "Created!", response: one });
@@ -51,20 +51,14 @@ const createMockProduct = async (req, res, next) => {
     next(error);
   }
 };
-const createMockProducts = async (req, res, next) => {
+const createMockPets = async (req, res, next) => {
   try {
     const { quantity } = req.params;
-    const prods = await createMocks(quantity);
-    return res.status(201).json({ message: "Created!", response: prods });
+    const pets = await createMocks(quantity);
+    return res.status(201).json({ message: "Created!", response: pets });
   } catch (error) {
     next(error);
   }
 };
 
-export {
-  createProduct,
-  readProducts,
-  createMockProduct,
-  createMockProducts,
-  readOneProduct,
-};
+export { createPet, readPets, createMockPet, createMockPets, readOnePet };

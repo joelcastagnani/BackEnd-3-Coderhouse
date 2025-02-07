@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { register, login, signout } from "../controllers/sessions.controler.js";
+import { register, login, signout } from "../controllers/sessions.controller.js";
 
 const sessionsRouter = Router();
 

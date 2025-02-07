@@ -1,29 +1,29 @@
-import Product from "../dao/models/product.model.js";
-import { createMockProduct } from "../utils/mocks.util.js";
+import Pet from "../dao/models/pet.model.js";
+import { createMockPet } from "../utils/mocks.util.js";
 
 const create = async (data) => {
-  const one = await Product.create(data);
+  const one = await Pet.create(data);
   return one;
 };
 const read = async (page) => {
-  const all = await Product.paginate(
+  const all = await Pet.paginate(
     {},
     { page, sort: { name: 1 }, select: "-createdAt -updatedAt -__v" }
   );
   return all;
 };
 const createMock = async () => {
-  const data = createMockProduct();
-  const one = await Product.create(data);
+  const data = createMockPet();
+  const one = await Pet.create(data);
   return one;
 };
 const createMocks = async (quantity) => {
-  const prods = [];
+  const pets = [];
   for (let i = 0; i < quantity; i++) {
     const one = await createMock();
-    prods.push(one);
+    pets.push(one);
   }
-  return prods;
+  return pets;
 };
 
 export { create, read, createMock, createMocks };

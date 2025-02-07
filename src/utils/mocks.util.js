@@ -13,5 +13,15 @@ function createMockProduct() {
   const category = "";
   return { name, description, stock, price, image, category };
 }
+function createMockPet() {
+  const name = faker.animal.dog();  
+  const age = faker.number.int({ min: 1, max: 15 });
+  const size = faker.helpers.arrayElement(["Small", "Medium", "Large"]); // Tamaño de la mascota
+  const color = faker.color.human();
+  const adopted = false; 
+  const owner = null;
 
-export { createMockProduct };
+  return { name, age, size, color, adopted, owner };
+}
+
+export { createMockProduct, createMockPet };

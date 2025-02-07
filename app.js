@@ -23,19 +23,19 @@ const ready = async () => {
   await dbConnect();
 };
 
-// server.listen(port, ready);
+server.listen(port, ready);
 
-const isPrimary = cluster.isPrimary;
-const numberOfProcess = cpus().length;
-if (isPrimary) {
-  loggerUtil.INFO(`isPrimary: ${process.pid}`);
-  for (let i = 1; i <= numberOfProcess; i++) {
-    cluster.fork();
-  }
-} else {
-  loggerUtil.INFO(`isWorker: ${process.pid}`);
-  server.listen(port, ready);
-}
+// const isPrimary = cluster.isPrimary;
+// const numberOfProcess = cpus().length;
+// if (isPrimary) {
+//   loggerUtil.INFO(`isPrimary: ${process.pid}`);
+//   for (let i = 1; i <= numberOfProcess; i++) {
+//     cluster.fork();
+//   }
+// } else {
+//   loggerUtil.INFO(`isWorker: ${process.pid}`);
+//   server.listen(port, ready);
+// }
 
 server.use(compression({ brotli: { enabled: true, zlib: {} } }));
 server.use(express.json());

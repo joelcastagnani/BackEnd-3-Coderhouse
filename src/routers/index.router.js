@@ -1,11 +1,14 @@
 import { Router } from "express";
 import productsRouter from "./products.router.js";
 import sessionsRouter from "./sessions.router.js";
+import petsRouter from "./pets.router.js";
 
 const router = Router();
 
 router.use("/products", productsRouter);
 router.use("/sessions", sessionsRouter);
+router.use("/pets", petsRouter);
+
 router.get("/simplex", (req, res) => {
   console.log("entro");
   let result = 0;
