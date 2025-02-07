@@ -1,0 +1,16 @@
+config:
+  plugging:
+    metrics-by-endpoint: {}
+  target: http://localhost:8080/api
+  phases:
+    - duration: 10
+      arrivalRate: 100
+scenarios:
+  - name: read all products & read one product
+    flow:
+      - log: read all products
+      - get: 
+          url: /products
+      - log: read one product
+      - get:
+          url: /products/6791b7741e0f99b89d927287
