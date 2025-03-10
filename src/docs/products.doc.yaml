@@ -1,0 +1,89 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        name:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: descripcion del producto
+        stock:
+          type: number
+          description: Cantidad de uinidades
+        price:
+          type: number
+          description: precio s
+        image:
+          type: string
+          description: imagen del producto
+        category:
+          type: string
+          description: categoria del producto
+      example:
+        name: zapato
+        description: cuero negro
+        stock: 100
+        price: 100
+        image: "data:image/jpeg;base64,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"
+        category: zapatos
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+paths:
+  /api/products:
+    post:
+      summary: crea un producto
+      tags:
+        - Products
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+    get:
+      summary: obtiene un preoducto
+      tags:
+        - Products
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: number
+  /api/products/mocks:
+    get:
+      summary: crea un producto de immitacion
+      tags:
+        - Products
+      securitry:
+        - cookieAuth: []
+  /api/products/mocks/{quantity}:
+    get:
+      summary: crea la cantidad de productos por parametro
+      tags:
+        - Products
+      securitry:
+        - cookieAuth: []
+      parameters:
+        - name: quantity
+          in: path
+          required: true
+          schema:
+            type: number
+  /api/products/{pid}:
+    get:
+      summary: encuentra un producto por id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string

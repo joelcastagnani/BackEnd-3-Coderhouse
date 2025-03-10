@@ -1,0 +1,146 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: String
+          format: email
+          description: "correo electronico"
+        password:
+          type: String
+          description: "contrace;a del user"
+        role:
+          type: String
+          description: "Rol que asigna permisos"
+      example:
+        email: joel@gmail.com
+        password: hola1234
+        role: user
+  otherSchemas:
+    Login:
+      type: object
+      format: email
+      description: correo cla  skjnc aesddbla BLA BLA
+  responses:
+    register:
+      type: object
+      properties:
+        response:
+          description: Identificador del usuario registrado
+          type: string
+        message:
+          description: Mensaje de exito del reghistro
+          type: string
+      example:
+        response: 6797c1dfc8c7dbfcb0d8787d
+        message: User registered!
+    login:
+      type: object
+      properties:
+        response:
+          description: Mensaje de exito del usuario registrado
+          type: string
+        message:
+          description: mensaje de exito de inicio de sesion
+          type: string
+      example:
+        response: 6797c1dfc8c7dbfcb0d8787d
+        message: User logged in!
+    badauth:
+      type: object
+      properties:
+        message:
+          description: Mensaje de error de auth
+          type: string
+      example:
+        message: Bad Auth
+    fatal:
+      type: object
+      properties:
+        message:
+          description: Mensaje de error del servidor
+          type: string
+      example:
+        message: Fatal Error
+    signout:
+      type: object
+      properties:
+        response:
+          description: Identificador de usuario que cerro sesion
+          type: string
+        message:
+          description: Mensaje de exito de cerrado de sesion
+          type: string
+        example:
+          response: 6797c1dfc8c7dbfcb0d8787d
+          message: User signed out!
+    forbidden:
+      type: object
+      properties:
+        message:
+          description: Mensaje de error de auth
+          type: string
+      example:
+        message: forbidden
+
+paths:
+  /api/auth/register:
+    post:
+      summary: registra bla bla blka
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/register"
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/badauth"
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/fatal"
+  /api/auth/login:
+    post:
+      summary: bla bloa bla
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/otherSchemas/Login"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/login"
+        401:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/badauth"
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/fatal"
+  /api/auth/logout:
+    post:
+      summary: bla bloa bla
+      tags:
+        - Auth

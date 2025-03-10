@@ -6,7 +6,7 @@ import petsRouter from "./pets.router.js";
 const router = Router();
 
 router.use("/products", productsRouter);
-router.use("/sessions", sessionsRouter);
+router.use("/auth", sessionsRouter);
 router.use("/pets", petsRouter);
 
 router.get("/simplex", (req, res) => {

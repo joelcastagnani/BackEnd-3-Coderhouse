@@ -11,10 +11,15 @@
     "performance": "artillery run ./test/artillery/flow.yaml --output ./test/artillery/flow.json",
     "report": "artillery report ./test/artillery/flow.json",
     "buildimage": "docker build -t back-70210 .",
-    "container":"docker run -p 8080:8080 back-70210",
-    "container2":"docker run -p 8090:8080 back-70210",
+    "container": "docker run -p 8080:8080 back-70210",
+    "container2": "docker run -p 8090:8080 back-70210",
+    "container3": "docker run -p 8070:8080 back-70210",
     "tagcontainer": "docker tag back-70210 rideparkcity/back-70210:1.0.0",
-    "pushcontainer": "docker push rideparkcity/back-70210:1.0.0"
+    "pushcontainer": "docker push rideparkcity/back-70210:1.0.0",
+    "apply": " kubectl apply -f ./manifest.yaml",
+    "pods": "kubectl get pods",
+    "deployments": "kubectl get deployments",
+    "services": "kubectl get services"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +36,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.3",
     "mongoose-paginate-v2": "^1.9.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {

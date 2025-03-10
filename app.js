@@ -3,7 +3,7 @@ import cluster from "cluster";
 import { cpus } from "os";
 import compression from "express-compression";
 import cookieParser from "cookie-parser";
-
+import {serve, setup} from "swagger-ui-express";
 import dbConnect from "./src/utils/dbConnect.util.js";
 import argsUtils from "./src/utils/args.utils.js";
 import router from "./src/routers/index.router.js";
@@ -12,6 +12,7 @@ import sessionsRouter from "./src/routers/sessions.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import loggerUtil from "./src/utils/logger.util.js";
 import httpLogger from "./src/middlewares/httpLogger.mid.js";
+import docSpec from "./src/utils/docSpec.util.js";
 
 const server = express();
 const port = env.PORT || 8080;
@@ -45,6 +46,7 @@ server.use(httpLogger);
 server.use(cookieParser());
 server.use("/api/sessions", sessionsRouter);
 server.use("/api", router);
+server.use("/api/docs", serve, setup(docSpec));
 
 server.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
