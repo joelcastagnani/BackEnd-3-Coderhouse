@@ -1,7 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import jwt from "jsonwebtoken";
 
-const { SECRET_KEY } = process.env;
 
+const { SECRET_KEY } = process.env;
 if (!SECRET_KEY) {
   throw new Error("SECRET_KEY is not defined in environment variables.");
 }
