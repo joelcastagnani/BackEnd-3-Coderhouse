@@ -1,9 +1,3 @@
-console.log(process.env);
-
-import dotenv from 'dotenv';
-dotenv.config();
-
-
 import { expect } from "chai";
 import {
   registerService,

@@ -21,7 +21,8 @@
     "deployments": "kubectl get deployments",
     "services": "kubectl get services",
     "mocha": "mocha ./test/mocha",
-    "chai":  "mocha -r dotenv/config ./test/chai"
+    "chai": "mocha -r dotenv/config ./test/chai",
+    "super": "mocha ./test/supertest"
   },
   "keywords": [],
   "author": "",
@@ -46,6 +47,7 @@
     "@faker-js/faker": "^9.3.0",
     "artillery": "^1.7.0",
     "chai": "^5.2.0",
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "supertest": "^7.0.0"
   }
 }

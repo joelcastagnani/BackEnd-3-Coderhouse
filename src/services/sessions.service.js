@@ -15,7 +15,6 @@ const registerService = async (data) => {
     throw error;
   }
 };
-
 const loginService = async (data) => {
   try {
     const { password, one } = data;
