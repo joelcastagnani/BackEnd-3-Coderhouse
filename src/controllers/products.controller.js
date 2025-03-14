@@ -5,6 +5,7 @@ import {
   createMocks,
   read,
 } from "../services/products.service.js";
+import { readById } from "../services/users.service.js";
 import CustomError from "../utils/errors/custom.error.js";
 import { notFound } from "../utils/errors/dictionary.error.js";
 
@@ -21,11 +22,10 @@ const readOneProduct = async (req, res, next) => {
   try {
     const { pid } = req.params;
     const one = await Product.findById(pid);
-    if (one) {
-      return res.status(200).json({ mssage: "Read!", response: one });
-    } else {
-      CustomError.new(notFound);
+    if (!one) {
+      throw CustomError.new(notFound);
     }
+    return res.status(200).json({ message: "Read!", response: one });
   } catch (error) {
     next(error);
   }
@@ -34,15 +34,50 @@ const readProducts = async (req, res, next) => {
   try {
     const { page } = req.query;
     const all = await read(page);
-    if (all.docs.length > 0) {
-      return res.status(200).json({ message: "Read!", response: all });
-    } else {
-      CustomError.new(notFound);
+    if (all.docs.length === 0) {
+      throw CustomError.new(notFound);
     }
+    return res.status(200).json({ message: "Read!", response: all });
   } catch (error) {
     next(error);
   }
 };
+const updateProduct = async (req, res, next) => {
+  try {
+    const { pid } = req.params;
+    const data = req.body;
+    const updatedProduct = await Product.findByIdAndUpdate(pid, data, {
+      new: true,
+    });
+
+    if (!updatedProduct) {
+      throw CustomError.new(notFound);
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Updated!", response: updatedProduct });
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteProduct = async (req, res, next) => {
+  try {
+    const { pid } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(pid);
+
+    if (!deletedProduct) {
+      throw CustomError.new(notFound);
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Deleted!", response: deletedProduct });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createMockProduct = async (req, res, next) => {
   try {
     const one = await createMock();
@@ -67,4 +102,6 @@ export {
   createMockProduct,
   createMockProducts,
   readOneProduct,
+  updateProduct,
+  deleteProduct,
 };

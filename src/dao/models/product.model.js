@@ -14,7 +14,7 @@ const schema = new Schema(
     },
     category: {
       type: String,
-      enum: ["", "computadoras", "perifericos", "celulares"],
+      enum: ["","none", "computadoras", "perifericos", "celulares"], default: "none"
     },
   },
   {
