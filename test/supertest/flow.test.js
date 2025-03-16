@@ -48,7 +48,7 @@ describe("Testing login, CRUD, Signout - FLOW", () => {
     expect(oldStock).not.to.equal(newStock);
   });
   it("DELETE api/products/:pid should destroy a product", async () => {
-    await requester.delete(`/products/${productId}` ).set("Cookie", cookies);
+    await requester.delete(`/products/${productId}`).set("Cookie", cookies);
     const { status } = await requester.get(`/products/${productId}`);
     expect(status).to.equal(404);
   });
