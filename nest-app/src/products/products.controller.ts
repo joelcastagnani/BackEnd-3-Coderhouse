@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpException,
+  HttpStatus
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
 
@@ -7,39 +17,35 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  create(@Body() data: Product) {
-    return this.productsService.create(data);
+  async create(@Body() data: Product) {
+    return await this.productsService.create(data);
   }
-
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  async findAll() {
+    return await this.productsService.findAll();
   }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    const one = this.productsService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const one = await this.productsService.findOne(id);
     if (one) {
       return one;
     }
-    throw new HttpException("Product not found", HttpStatus.NOT_FOUND);
+    throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
   }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() data: Product) {
-    const one = this.productsService.update(id, data);
+  async update(@Param('id') id: string, @Body() data: Product) {
+    const one = await this.productsService.update(id, data);
     if (one) {
       return one;
     }
-    throw new HttpException("Product not found", HttpStatus.NOT_FOUND);
+    throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
   }
-
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    const one =  this.productsService.remove(id);
+  async remove(@Param('id') id: string) {
+    const one = await this.productsService.remove(id);
     if (one) {
       return one;
     }
-    throw new HttpException("Product not found", HttpStatus.NOT_FOUND);
+    throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
   }
 }
