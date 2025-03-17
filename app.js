@@ -3,6 +3,8 @@ import cluster from "cluster";
 import { cpus } from "os";
 import compression from "express-compression";
 import cookieParser from "cookie-parser";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsDoc from "swagger-jsdoc";
 import {serve, setup} from "swagger-ui-express";
 import dbConnect from "./src/utils/dbConnect.util.js";
 import argsUtils from "./src/utils/args.utils.js";
@@ -24,19 +26,19 @@ const ready = async () => {
   await dbConnect();
 };
 
-//server.listen(port, ready);
+server.listen(port, ready);
 
-const isPrimary = cluster.isPrimary;
-const numberOfProcess = cpus().length;
-if (isPrimary) {
-  loggerUtil.INFO(`isPrimary: ${process.pid}`);
-  for (let i = 1; i <= numberOfProcess; i++) {
-    cluster.fork();
-  }
-} else {
-  loggerUtil.INFO(`isWorker: ${process.pid}`);
-  server.listen(port, ready);
-}
+// const isPrimary = cluster.isPrimary;
+// const numberOfProcess = cpus().length;
+// if (isPrimary) {
+//   loggerUtil.INFO(`isPrimary: ${process.pid}`);
+//   for (let i = 1; i <= numberOfProcess; i++) {
+//     cluster.fork();
+//   }
+// } else {
+//   loggerUtil.INFO(`isWorker: ${process.pid}`);
+//   server.listen(port, ready);
+// }
 
 server.use(compression({ brotli: { enabled: true, zlib: {} } }));
 server.use(express.json());
