@@ -18,6 +18,7 @@ import docSpec from "./src/utils/docSpec.util.js";
 
 const server = express();
 const port = env.PORT || 8080;
+
 const ready = async () => {
   const mode = argsUtils.mode;
   loggerUtil.INFO(
